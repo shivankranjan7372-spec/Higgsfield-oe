@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+/*
+ * The design system. Every value below is read from the project's design:
+ * the first block is its token list.
+ * It replaces Tailwind's text and radius scales on purpose, so `text-sm` is 14px
+ * and `rounded-xl` is 12px everywhere. See docs/ui/README.md before adding a value.
+ */
+@theme {
+  --color-page: #0F1113;
+  --color-surface-primary: #131416;
+  --color-surface-secondary: #1C1E21;
+  --color-surface-secondary-strong: #23262A;
+  --color-surface-tertiary: #2A2D32;
+  --color-surface-elevated: #383E46;
+  --color-toggle-track: #484E56;
+  --color-text-primary: #FFFFFF;
+  --color-text-nav: #A8A8A8;
+  --color-text-secondary: #828282;
+  --color-text-tertiary: #626262;
+  --color-text-inverse: #1A1A1A;
+  --color-border-subtle: #FFFFFF0D;
+  --color-border-default: #FFFFFF1A;
+  --color-border-strong: #FFFFFF33;
+  --color-brand: #D1FE17;
+  --color-brand-pressed: #B2D814;
+  --color-brand-shadow: #829B19;
+  --color-brand-tint: #D1FE1726;
+  --color-promo: #FF005B;
+  --color-promo-soft: #ED1572;
+  /* Ours: the designs draw no error state. */
+  --color-danger: #FF6B6B;
+  --text-2xs: 10px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --breakpoint-desktop: 1440px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+  --radius-full: 9999px;
+}
+
+/*
+ * Values the designs use everywhere without a name of their own. Same hex codes as
+ * the designs; the names are ours.
+ */
+@theme {
+  /* Text */
+  --color-text-muted: #898A8B;
+  --color-text-soft: #F7F7F8;
+  --color-text-idle: #FFFFFF4C; /* a nav link that is not the current page */
+  --color-text-tab: #FFFFFF80; /* a tab that is not selected */
+  --color-ink: #131517; /* text on lime */
+
+  /* Surfaces */
+  --color-surface-shell: #131517; /* sidebar shells, cards on the page */
+  --color-surface-menu: #1C1E20; /* mega menu, popovers */
+  --color-surface-field: #27292C; /* the prompt field */
+  --color-surface-glass: #23262ABF; /* floating chips over media, with backdrop blur */
+  --color-surface-sunken: #18191C;
+  --color-scrim: #000000CC; /* behind a modal */
+  --color-brand-chip: #D1FE173D; /* the small lime "Top" tag */
+  --color-brand-glow: #CDFF00;
+
+  /* Shadows */
+  --shadow-composer: #00000026 0px 32px 24px;
+  --shadow-menu: #0000004C 0px 20px 25px -5px, #0000004C 0px 8px 10px -6px;
+  --shadow-lime: #829B19 0px -3px 0px inset, #00000040 0px 6px 4px, #00000026 0px 32px 24px;
+  --shadow-lime-deep:
+    #829B19 0px -3px 0px inset, #829B19 0px -2px 0px inset, #00000026 10px 34px 24px, #00000003 8px 21px 6px,
+    #00000040 3px 7px 5px, #0000006E 1px 3px 4px, #0000007D 0px 1px 2px, #D1FE17 0px 1px 0px;
+  --shadow-pill: #0000001A 0px 2px 4px;
+  --shadow-inset-soft: #FFFFFF0D 0px 2px 4px inset;
+
+  /* Motion. The design holds no motion data, so these are ours: quick and quiet. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in: fade-in 160ms var(--ease-out-soft) both;
+  --animate-rise-in: rise-in 220ms var(--ease-out-soft) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+/* Fonts are loaded in layout.tsx with next/font and arrive as CSS variables. */
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-racing: var(--font-racing-sans), var(--font-space-grotesk), sans-serif;
+  --font-space-mono: var(--font-space-mono-face), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-page);
+    color-scheme: dark;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    overflow-wrap: anywhere;
+  }
+
+  button,
+  [role="button"],
+  summary,
+  label[for] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* One focus style for the whole app. The design draws none, so this is ours. */
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-brand) 70%, transparent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-ink);
+  }
+
+  textarea,
+  input {
+    font: inherit;
+  }
+
+  ::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 1;
+  }
+}
+
+/*
+ * Things a visitor closed for good (the promo strip, the guide hint). A script in the page
+ * head lists them on <html data-closed="..."> before the first paint. See src/lib/closable.ts.
+ */
+html[data-closed~="promo"] [data-closable="promo"],
+html[data-closed~="guide"] [data-closable="guide"],
+html[data-closed~="agentGuide"] [data-closable="agentGuide"],
+html[data-closed~="cinemaGuide"] [data-closable="cinemaGuide"] {
+  display: none;
+}
+
+/* Thin, quiet scrollbars for panels that scroll inside the page. */
+@utility scroll-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+@utility scroll-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* The loading sweep used by tiles that are still generating. */
+@utility shimmer {
+  background-image: linear-gradient(100deg, #ffffff00 20%, #ffffff12 50%, #ffffff00 80%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* The chrome gradient on the one silver nav link, and anywhere else a label needs it. */
+@utility text-chrome {
+  background-image: linear-gradient(in oklab 180deg, #ffffff 0%, #d4d4d4 45%, #9e9e9e 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

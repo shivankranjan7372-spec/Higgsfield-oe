@@ -1,0 +1,6 @@
+{
+  "name": "Parallax",
+  "description": "An open-source AI image, video and audio studio, with an agent chat that can run on a Hermes agent.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
